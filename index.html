@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortal Kombat 1 - Uma Nova Era</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="accessibility-bar" aria-label="Controles de Acessibilidade">
+        <button onclick="toggleContrast()" aria-label="Alternar Alto Contraste">Alto Contraste</button>
+        <button onclick="changeFontSize('increase')" aria-label="Aumentar Fonte">A+</button>
+        <button onclick="changeFontSize('decrease')" aria-label="Diminuir Fonte">A-</button>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>MORTAL KOMBAT<span>1</span></h1>
+            <p>Está no nosso sangue.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="fighters" aria-labelledby="fighters-title">
+            <h2 id="fighters-title">Escolha seu Destino</h2>
+            <div id="fighters-grid" class="grid-container">
+                </div>
+        </section>
+
+        <section id="features" class="tabs-section">
+            <div class="tab-controls" role="tablist">
+                <button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1">A História</button>
+                <button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2">Kameo Fighters</button>
+            </div>
+            <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+                <h3>Um Universo Renascido</h3>
+                <p>Descubra um universo de Mortal Kombat renascido, criado pelo Deus do Fogo Liu Kang.</p>
+            </div>
+            <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+                <h3>Parceiros de Luta</h3>
+                <p>Uma lista exclusiva de parceiros de combate para ajudar você nas batalhas.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Mortal Kombat 1 Fan Project. Focado em Acessibilidade.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
