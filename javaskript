@@ -1,0 +1,61 @@
+// 1. GESTÃO DE DADOS (DATA-DRIVEN UI)
+const fighters = [
+    { name: "Liu Kang", role: "Deus do Fogo", desc: "Protetor do Plano Terreno." },
+    { name: "Sub-Zero", role: "Grandmaster Lin Kuei", desc: "Mestre do gelo." },
+    { name: "Scorpion", role: "Guerreiro Shirai Ryu", desc: "Mestre do fogo e correntes." },
+    { name: "Kitana", role: "Princesa de Outworld", desc: "Luta pela ordem do reino." }
+];
+
+function renderFighters() {
+    const grid = document.getElementById('fighters-grid');
+    grid.innerHTML = fighters.map(f => `
+        <article class="card" role="article">
+            <h3>${f.name}</h3>
+            <p><strong>${f.role}</strong></p>
+            <p>${f.desc}</p>
+        </article>
+    `).join('');
+}
+
+// 2. ACESSIBILIDADE: TAMANHO DA FONTE
+let currentFontSize = 100;
+function changeFontSize(action) {
+    currentFontSize += (action === 'increase' ? 10 : -10);
+    document.documentElement.style.fontSize = `${currentFontSize}%`;
+}
+
+// 3. ACESSIBILIDADE: ALTO CONTRASTE
+function toggleContrast() {
+    document.body.classList.toggle('high-contrast');
+}
+
+// 4. COMPONENTE DE ABAS
+const tabs = document.querySelectorAll('[role="tab"]');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = tab.getAttribute('aria-controls');
+        
+        // Reset
+        document.querySelectorAll('[role="tabpanel"]').forEach(p => p.hidden = true);
+        tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+        
+        // Ativar
+        document.getElementById(target).hidden = false;
+        tab.setAttribute('aria-selected', 'true');
+    });
+});
+
+// 5. SCROLL REVEAL (INTERSECTION OBSERVER)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+        }
+    });
+}, { threshold: 0.1 });
+
+// Inicialização
+window.addEventListener('DOMContentLoaded', () => {
+    renderFighters();
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+});
